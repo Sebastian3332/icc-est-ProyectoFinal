@@ -41,10 +41,10 @@ public class DFSPathFinder implements PathFinder{
                     break;
                 }
 
-                // En DFS iterativo, obtener vecinos y meterlos a la pila
+                
                 for (Node<MapPoint> neighbor : graph.getNeighbors(current.getData())) {
                     if (!visited.contains(neighbor)) {
-                        parents.putIfAbsent(neighbor, current); // Solo guardamos la primera vez
+                        parents.putIfAbsent(neighbor, current); 
                         stack.push(neighbor);
                     }
                 }

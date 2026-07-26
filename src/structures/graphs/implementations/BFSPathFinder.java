@@ -24,12 +24,12 @@ public class BFSPathFinder implements PathFinder {
         Set<Node<MapPoint>> visited = new HashSet<>();
         Map<Node<MapPoint>, Node<MapPoint>> parents = new HashMap<>();
         
-        // LinkedHashSet es vital aquí para que la vista lo dibuje en el orden correcto
+        
         Set<MapPoint> animatedVisited = new LinkedHashSet<>();
 
         queue.add(start);
         visited.add(start);
-        animatedVisited.add(start.getData()); // Guardamos el rastro para la UI
+        animatedVisited.add(start.getData()); 
 
         boolean found = false;
 
@@ -41,12 +41,12 @@ public class BFSPathFinder implements PathFinder {
                 break;
             }
 
-            // Asumiendo que tu Graph tiene un método getNeighbors (o puedes acceder iterando getGraph())
+            
             for (Node<MapPoint> neighbor : graph.getNeighbors(current.getData())) {
                 if (!visited.contains(neighbor)) {
                     visited.add(neighbor);
-                    animatedVisited.add(neighbor.getData()); // Añadimos al rastro de animación
-                    parents.put(neighbor, current); // Guardamos de dónde venimos
+                    animatedVisited.add(neighbor.getData()); 
+                    parents.put(neighbor, current); 
                     queue.add(neighbor);
                 }
             }
@@ -56,7 +56,7 @@ public class BFSPathFinder implements PathFinder {
         return new PathResult(finalPath, animatedVisited);
     }
 
-    // Construye la ruta hacia atrás y la convierte en un LinkedHashSet para la vista
+    
     private Set<MapPoint> buildPath(Map<Node<MapPoint>, Node<MapPoint>> parents, Node<MapPoint> end, boolean found) {
         List<MapPoint> tempPath = new ArrayList<>();
         if (found) {
@@ -65,7 +65,7 @@ public class BFSPathFinder implements PathFinder {
                 tempPath.add(current.getData());
                 current = parents.get(current);
             }
-            Collections.reverse(tempPath); // Invertimos para que vaya de Inicio a Fin
+            Collections.reverse(tempPath); 
         }
         return new LinkedHashSet<>(tempPath);
     }

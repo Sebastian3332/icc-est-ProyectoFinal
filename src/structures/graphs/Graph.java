@@ -17,13 +17,13 @@ public class Graph<T> {
         graph.putIfAbsent(new Node<>(data), new LinkedHashSet<>());
     }
 
-    // bidireccional
+    
     public void addEdge(T source, T destination) {
         addEdgeUni(source, destination);
         addEdgeUni(destination, source);
     }
 
-    // unidireccional
+    
     public void addEdgeUni(T source, T destination) {
         addNode(source);
         addNode(destination);
