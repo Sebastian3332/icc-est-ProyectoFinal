@@ -3,19 +3,13 @@ package controllers;
 import javax.swing.*;
 import java.awt.Image;
 import java.awt.Point;
-import java.io.File;
 import java.util.*;
 import javax.imageio.ImageIO;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.Timer;
 
 import models.MapPoint;
-import models.VisualizationMode;
 import structures.graphs.Graph;
-import structures.graphs.PathFinder;
-import structures.graphs.PathResult;
-import structures.graphs.implementations.BFSPathFinder;
-import structures.graphs.implementations.DFSPathFinder;
 import views.MainFrame;
 import views.MapPanel;
 
