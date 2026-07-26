@@ -1,23 +1,24 @@
 package structures.node;
+
 import java.util.Objects;
-import models.MapPoint;
 
-public class Node {
-    private MapPoint data;
+public class Node<T> {
 
-    public Node(MapPoint data){
+    private T data;
+
+    public Node(T data) {
         this.data = data;
     }
 
-    public MapPoint getData(){
+    public T getData() {
         return data;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Node node = (Node) obj;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node<?> node = (Node<?>) o;
         return Objects.equals(data, node.data);
     }
 

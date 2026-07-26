@@ -1,5 +1,6 @@
 package persistence;
 
-public class FileGraphRepository {
-    
+
+public class FileGraphRepository implements GraphRepository {
+
 }

@@ -1,6 +1,6 @@
 package models;
 
-public class VisualizationMode {
-    EXPLORATION;
-    FINAL_PATH;
+public enum VisualizationMode {
+    EXPLORATION,
+    FINAL_PATH
 }

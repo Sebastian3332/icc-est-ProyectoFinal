@@ -1,5 +1,8 @@
 package persistence;
 
-public class GraphRepository {
-    
+import java.io.File;
+import java.util.List;
+import models.MapPoint;
+
+public interface GraphRepository {
 }

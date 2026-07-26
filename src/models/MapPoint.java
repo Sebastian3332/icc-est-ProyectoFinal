@@ -8,54 +8,33 @@ public class MapPoint {
     private int x;
     private int y;
 
-    public MapPoint() {
-    }
-
     public MapPoint(String id, int x, int y) {
         this.id = id;
         this.x = x;
         this.y = y;
     }
 
-    public String getId() {
-        return id;
+    public MapPoint() {
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public boolean containsPoint(int clickX, int clickY, int radius) {
+        int dx = clickX - this.x;
+        int dy = clickY - this.y;
+        return (dx * dx + dy * dy) <= (radius * radius);
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
+    public String getId() { return id; }
+    public int getX() { return x; }
+    public int getY() { return y; }
 
     @Override
-    public boolean equals(Object obj) {
-
-        if (this == obj)
-            return true;
-
-        if (obj == null || getClass() != obj.getClass())
-            return false;
-
-        MapPoint other = (MapPoint) obj;
-
-        return Objects.equals(id, other.id);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MapPoint mapPoint = (MapPoint) o;
+        return Objects.equals(id, mapPoint.id);
     }
 
-    
     @Override
     public int hashCode() {
         return Objects.hash(id);
@@ -65,5 +44,4 @@ public class MapPoint {
     public String toString() {
         return id;
     }
-    
 }
