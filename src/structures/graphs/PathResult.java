@@ -1,17 +1,22 @@
 package structures.graphs;
 
-import java.util.List;
-import structures.node.Node;
+import java.util.Set;
+import models.MapPoint;
 
 public class PathResult {
-    private List<Node> finalPath;
-    private List<Node> exploredNodes;
+    private Set<MapPoint> path;            
+    private Set<MapPoint> exploredNodes;   
 
-    public PathResult(List<Node> finalPath, List<Node> exploredNodes) {
-        this.finalPath = finalPath;
+    public PathResult(Set<MapPoint> path, Set<MapPoint> exploredNodes) {
+        this.path = path;
         this.exploredNodes = exploredNodes;
     }
 
-    public List<Node> getFinalPath() { return finalPath; }
-    public List<Node> getExploredNodes() { return exploredNodes; }
+    public Set<MapPoint> getPath() {
+        return path;
+    }
+
+    public Set<MapPoint> getExploredNodes() {
+        return exploredNodes;
+    }
 }
