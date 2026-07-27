@@ -23,10 +23,16 @@ public class MapPoint {
         return (dx * dx + dy * dy) <= (radius * radius);
     }
 
-    public String getId() { return id; }
-    public int getX() { return x; }
-    public int getY() { return y; }
-
+    public String getId() {
+        return id;
+    }
+    public int getX() {
+        return x;
+    }
+    public int getY() {
+        return y;
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -9,6 +9,7 @@ import models.MapPoint;
 import structures.graphs.Graph;
 import structures.node.Node;
 import javax.swing.SwingUtilities;
+import java.awt.event.ActionListener;
 
 public class MapPanel extends JPanel {
 
@@ -158,13 +159,13 @@ public class MapPanel extends JPanel {
     }
 
     // listeneres para crear nodo y establecer inicio/fin
-    public void addListenerCrearNodo(java.awt.event.ActionListener l) {
+    public void addListenerCrearNodo(ActionListener l) {
         menuItemCrearNodo.addActionListener(l); 
     }
-    public void addListenerSetStart(java.awt.event.ActionListener l) { 
+    public void addListenerSetStart(ActionListener l) { 
         menuItemSetStart.addActionListener(l); 
     }
-    public void addListenerSetEnd(java.awt.event.ActionListener l) { 
+    public void addListenerSetEnd(ActionListener l) { 
         menuItemSetEnd.addActionListener(l); 
     }
 
@@ -192,13 +193,13 @@ public class MapPanel extends JPanel {
 
         // dibuja la linea temporal mientras se arrastra el raton para conectar nodos
         if (nodoOrigenDrag != null && puntoActualDrag != null) {
-            g2d.setColor(Color.ORANGE);
+            g2d.setColor(Color.BLACK);
             g2d.drawLine(nodoOrigenDrag.getX(), nodoOrigenDrag.getY(), puntoActualDrag.x, puntoActualDrag.y);
         }
 
         // dibuja la ruta final
         if (animatedPath.size() > 1) {
-            g2d.setColor(Color.green); // verde
+            g2d.setColor(Color.MAGENTA); // magenta la ruta final
             MapPoint prev = null;
             for (MapPoint curr : animatedPath) {
                 if (prev != null) {
@@ -206,6 +207,17 @@ public class MapPanel extends JPanel {
                 }
                 prev = curr;
             }
+
+            // hace que todos los nodos de la ruta final se dibujen en magenta
+            for (MapPoint p : animatedPath) {
+                g2d.setColor(Color.MAGENTA);
+                g2d.fillOval(p.getX() - 13, p.getY() - 13, 26, 26);
+                g2d.setColor(Color.BLACK);
+                g2d.drawOval(p.getX() - 13, p.getY() - 13, 26, 26);
+                int pixelesNodo = 3 * p.getId().length();
+                g2d.drawString(p.getId(), p.getX() - pixelesNodo, p.getY() + 4);
+            }
+
         }
 
         // dibuja los nodos
@@ -216,19 +228,25 @@ public class MapPanel extends JPanel {
             if (p.equals(startPoint)) {
                 g2d.setColor(Color.green); // Verde Inicio
             } else if (p.equals(endPoint)) {
-                g2d.setColor(Color.darkGray);   // Rojo Fin
+                g2d.setColor(Color.red);   // Rojo Fin
             } else if (animatedPath.contains(p)) {
-                g2d.setColor(Color.YELLOW);  // Amarillo en ruta
+                g2d.setColor(Color.MAGENTA);  // Amarillo en ruta
             } else if (animatedVisited.contains(p)) {
-                g2d.setColor(Color.MAGENTA);  // morado estado visitado
+                g2d.setColor(Color.YELLOW);  // morado estado visitado
             } else {
-                g2d.setColor(Color.LIGHT_GRAY);         // Neutro
+                g2d.setColor(Color.white);         // Neutro
             }
 
+            // Relleno del nodo
             g2d.fillOval(p.getX() - radius, p.getY() - radius, radius * 2, radius * 2);
-            g2d.setColor(Color.DARK_GRAY);
+            
+            // Borde negro del nodo
+            g2d.setColor(Color.BLACK);
+            g2d.drawOval(p.getX() - radius, p.getY() - radius, radius * 2, radius * 2);
+
+            // Texto del ID del nodo
             int pixelesNodo = 3 * p.getId().length();
             g2d.drawString(p.getId(), p.getX() - pixelesNodo, p.getY() + 4);
         }
     }  
-} 
+}
